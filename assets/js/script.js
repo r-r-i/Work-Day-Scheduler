@@ -1,19 +1,15 @@
-// TODO
+//  TODO
     // (a) current date at top of page
     // (b) page styled to mock-up
     // (c) buttons are clickable and saves text to local storage
     // (d) colors change when time is past,present,future
 
-
-
-// Global
+//  Gathers current time to call on later and area of text to show current date.
 var today = document.getElementById("currentDay")
 var timeNow = moment().hour();
-// var saveButton = document.querySelector(".saveBtn")
-// var userEventSpan = document.querySelector(".textarea")
 
 
-
+//  Variables that handle each of the buttons.
 var save0ne = document.getElementById("saveone")
 var saveTwo = document.getElementById("savetwo")
 var saveThree = document.getElementById("savethree")
@@ -23,8 +19,8 @@ var saveSix = document.getElementById("savesix")
 var saveSeven = document.getElementById("saveseven")
 var saveEight = document.getElementById("saveight")
 var saveNine = document.getElementById("savenine")
-
-var textOne = document.getElementById("textone")
+//  Variables that handle each of the text elements.
+var text0ne = document.getElementById("textone")
 var textTwo = document.getElementById("textwo")
 var textThree = document.getElementById("texthree")
 var textFour = document.getElementById("textfour")
@@ -34,15 +30,16 @@ var textSeven = document.getElementById("textseven")
 var textEight = document.getElementById("texteight")
 var textNine = document.getElementById("textnine")
 
+//  Arrays that are used to change the color of each text block per hour. Used in sync with timeNow variable above.
 timeBlockArr = ["9 AM", "10 AM" , "11 AM" , "12 PM" , "1 PM" , "2 PM", "3PM", "4 PM" , "5 PM"]
-textBlockArr = [textOne, textTwo , textThree , textFour , textFive , textSix, textSeven, textEight , textNine]
+textBlockArr = [text0ne, textTwo , textThree , textFour , textFive , textSix, textSeven, textEight , textNine]
 
-
+//  Displays current date at top of page.
 today.textContent = moment().format('dddd, MMMM Do')
 
+//  Functions that make the buttons clickable. On click, user text input is saved to local storage.
 save0ne.addEventListener("click", function(event) {
     event.preventDefault();
-    console.log("working")
     var textarea = document.querySelector("#textone").value;
     localStorage.setItem("event-1", textarea)
 })
@@ -87,10 +84,10 @@ saveNine.addEventListener("click", function(event){
     localStorage.setItem("event-9", textarea)
 })
 
-
+//  Functions that take each events key from local storage, and display them in their relative text area.
 function renderEventOne(){
     var userEvent = localStorage.getItem("event-1");
-    textOne.textContent = userEvent
+    text0ne.textContent = userEvent
     
 }
 function renderEventTwo(){
@@ -134,7 +131,7 @@ function renderEventNine(){
     
 }
 
-
+//  A for loop that changes the background color of text area when time passes. It does this by adding a new class that is predefined in style.css.
 for (i = 0; i < timeBlockArr.length; i++) {
     var timeBlock = timeBlockArr[i];
     var textBlock = textBlockArr[i];
@@ -148,7 +145,7 @@ for (i = 0; i < timeBlockArr.length; i++) {
 }
 
 
-
+// Calls the functions made above to display the user's event on page reload.
 renderEventOne()
 renderEventTwo()
 renderEventThree()
